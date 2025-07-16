@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Home.css';
 
 function Home() {
   const [isRegister, setIsRegister] = useState(false);
@@ -34,7 +35,8 @@ function Home() {
   };
 
   return (
-    <div className="auth-background">
+    <div className="home-wrapper">
+      <div className="container">
       <form className="auth-card" onSubmit={handleSubmit}>
         <h2>{isRegister ? 'Register' : 'Login'}</h2>
 
@@ -66,6 +68,7 @@ function Home() {
           </span>
         </p>
       </form>
+      </div>
     </div>
   );
 }

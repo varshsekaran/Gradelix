@@ -1,0 +1,103 @@
+/* Global reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent body scroll */
+  font-family: Arial, sans-serif;
+}
+
+/* Main app container */
+/* Sidebar layout main container */
+.app-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* 🔥 IMPORTANT */
+}
+
+
+/* Sidebar styling */
+.sidebar {
+  position: fixed;
+  top: 100px;                     /* Push below the navbar */
+  left: 0;
+  width: 200px;
+  height: calc(100vh - 80px);    /* Full height minus navbar */
+  background-color: #800033;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  box-sizing: border-box;
+  z-index: 999;
+}
+
+/* Circular logo */
+.profile-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+/* Sidebar buttons */
+.sidebar-btn {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.sidebar-btn:hover {
+  background-color: #f1f1f1;
+}
+
+/* Right-side content area */
+/* Content area to not scroll */
+.content {
+  flex: 1;
+  overflow: hidden; /* 🔥 PREVENT vertical scrollbar */
+  margin-left: 200px;
+  margin-top: 80px;
+  height: calc(100vh - 80px);
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Profile info under logo */
+.profile-info {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.profile-info .name {
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+.profile-info .degree,
+.profile-info .role {
+  font-size: 15px;
+  margin-top: 2px;
+  padding-bottom: 10px;
+}
+.profile-logo {
+  width: 150px;
+  height:150px;
+  border-radius: 70%;
+  background-color: white; /* Will be covered by image */
+  margin-bottom: 0px;
+}

@@ -1,0 +1,73 @@
+
+/* Prevent unwanted scrollbars globally */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Wrapper that centers the card */
+.hod-dashboard-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding-bottom: 80px;
+}
+
+/* Form container */
+.hod-dashboard-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  padding-bottom: 100px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Headings */
+.hod-dashboard-title {
+  text-align: center;
+  margin: 0;
+}
+
+.hod-dashboard-subtitle {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Form layout */
+.hod-dashboard-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input styling */
+.hod-input {
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Button styling */
+.hod-button {
+  padding: 10px;
+  background-color: #831238;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hod-button:hover {
+  background-color: #a71d4d;
+}
