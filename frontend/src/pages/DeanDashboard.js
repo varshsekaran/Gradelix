@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as XLSX from 'xlsx';
 import './DeanDashboard.css';
 
@@ -9,11 +9,14 @@ function DeanDashboard() {
   const [cae, setCae] = useState('1');
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const query = new URLSearchParams(location.search);
+  const mode = query.get('mode'); // 'cae' or 'semester'
 
   const handleAnalyse = () => {
     if (!file) {
       alert("Please upload a file");
-      console.log("No file selected");
       return;
     }
 
@@ -24,46 +27,62 @@ function DeanDashboard() {
       const sheet = workbook.Sheets[sheetName];
       const data = XLSX.utils.sheet_to_json(sheet);
 
-      let total = data.length;
-      let pass = 0;
-      let fail = 0;
+      let subjectStats = {};
+      const passMark = mode === 'semester' ? 30 : 25;
 
       data.forEach((row) => {
-  let passed = true;
+        Object.keys(row).forEach((key) => {
+          const header = key.trim().toUpperCase();
+          const value = row[key];
 
-  Object.keys(row).forEach((key) => {
-    const header = key.trim().toUpperCase(); 
-    if (header !== 'REG NO' && key !== 'NAME OF THE STUDENT') {
-      const value = row[key];
+          if (header === 'REG NO' || header === 'NAME OF THE STUDENT') return;
+          if (value === 'NA' || value === 'na' || value === '' || value === null) return;
 
-      if (
-        value === 'A' || 
-        value === 'a' || 
-        value === '-' || 
-        value === '' || 
-        value == null || 
-        isNaN(value) || 
-        parseInt(value) < 25
-      ) {
-        passed = false;
-      }
-    }
-  });
+          if (!subjectStats[header]) {
+            subjectStats[header] = {
+              total: 0,
+              present: 0,
+              absent: 0,
+              fail: 0,
+              pass: 0,
+              percentage: 0,
+            };
+          }
 
-  if (passed) pass++;
-  else fail++;
-});
+          subjectStats[header].total++;
 
+          const cleaned = String(value).trim().replace(/,/g, '');
+          const isAbsent =
+            cleaned === 'A' || cleaned === 'a' || cleaned === '-' || cleaned === '' || isNaN(Number(cleaned));
 
-      // Redirect to result page with state
-      navigate('/Analysis', {
+          if (isAbsent) {
+            subjectStats[header].absent++;
+          } else {
+            const score = Number(cleaned);
+            subjectStats[header].present++;
+            if (score < passMark) {
+              subjectStats[header].fail++;
+            } else {
+              subjectStats[header].pass++;
+            }
+          }
+        });
+      });
+
+      Object.keys(subjectStats).forEach((subject) => {
+        const stat = subjectStats[subject];
+        stat.pass = stat.present - stat.fail;
+        stat.percentage = ((stat.pass / stat.total) * 100).toFixed(2);
+      });
+
+      console.table(subjectStats); // for debugging
+      navigate('/analysis', {
         state: {
           year,
           semester,
           cae,
-          total,
-          pass,
-          fail
+          mode,
+          subjectStats
         }
       });
     };
@@ -74,23 +93,34 @@ function DeanDashboard() {
   return (
     <div className="hod-dashboard-wrapper">
       <div className="hod-dashboard-card">
-        <h1 className="hod-dashboard-title">Dean Dashboard</h1>
+        <h1 className="hod-dashboard-title">
+  {mode === 'cae' ? 'CAE Analysis' : mode === 'semester' ? 'Semester Analysis' : 'Dean Dashboard'}</h1>
 
-        <div className="hod-dashboard-form">
-          <label>Enter year</label>
-          <input type="text" value={year} onChange={(e) => setYear(e.target.value)} className="hod-input" />
+        {mode ? (
+          <div className="hod-dashboard-form">
+            <label>Enter Year</label>
+            <input type="text" value={year} onChange={(e) => setYear(e.target.value)} className="hod-input" />
 
-          <label>Enter semester</label>
-          <input type="text" value={semester} onChange={(e) => setSemester(e.target.value)} className="hod-input" />
+            <label>Enter Semester</label>
+            <input type="text" value={semester} onChange={(e) => setSemester(e.target.value)} className="hod-input" />
 
-          <label>Enter CAE</label>
-          <input type="text" value={cae} onChange={(e) => setCae(e.target.value)} className="hod-input" />
+            {mode === 'cae' && (
+              <>
+                <label>Enter CAE</label>
+                <input type="text" value={cae} onChange={(e) => setCae(e.target.value)} className="hod-input" />
+              </>
+            )}
 
-          <label>Upload file</label>
-          <input type="file" onChange={(e) => setFile(e.target.files[0])} className="hod-input" />
+            <label>Upload File</label>
+            <input type="file" onChange={(e) => setFile(e.target.files[0])} className="hod-input" />
 
-          <button onClick={handleAnalyse} className="hod-button">Analyse</button>
-        </div>
+            <button onClick={handleAnalyse} className="hod-button">Analyse</button>
+          </div>
+        ) : (
+          <p style={{ paddingTop: '1rem', fontStyle: 'italic', color: '#777' }}>
+            📌 Please select <strong>CAE</strong> or <strong>SEMESTER</strong> from the sidebar to begin.
+          </p>
+        )}
       </div>
     </div>
   );

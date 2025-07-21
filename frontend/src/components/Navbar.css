@@ -11,11 +11,12 @@
   }
   .logo {
     display: block;  /* Ensures it's treated as a block element */
-    position: absolute; /* Allows precise positioning */
+    position: fixed; /* Allows precise positioning */
     top: 10px; /* Adjust as needed */
     left: 10px; /* Moves the logo to the left */
     width: 250px; /* Adjust size as needed */
     height: 70px; /* Maintains aspect ratio */
+     z-index: 1001;
   }
 .navbar {
     padding: 50px;
@@ -23,7 +24,10 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    
+    position: fixed;
+    top: 0;
+   left: 0;
+    z-index: 1000;
     
 }
 .login {

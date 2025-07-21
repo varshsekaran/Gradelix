@@ -2,8 +2,8 @@
 html, body {
   margin: 0;
   padding: 0;
+  overflow: auto; 
   box-sizing: border-box;
-  overflow: hidden; /* Prevent body scroll */
   font-family: Arial, sans-serif;
 }
 
@@ -13,7 +13,7 @@ html, body {
   display: flex;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* 🔥 IMPORTANT */
+  overflow: hidden; /* ✅ Keep this to prevent page scroll */
 }
 
 
@@ -60,21 +60,6 @@ html, body {
   background-color: #f1f1f1;
 }
 
-/* Right-side content area */
-/* Content area to not scroll */
-.content {
-  flex: 1;
-  overflow: hidden; /* 🔥 PREVENT vertical scrollbar */
-  margin-left: 200px;
-  margin-top: 80px;
-  height: calc(100vh - 80px);
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Profile info under logo */
 .profile-info {
   text-align: center;
   color: white;

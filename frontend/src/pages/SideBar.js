@@ -1,13 +1,21 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import './SideBar.css';
-import profilePic from '../assets/Profile.jpg'; // ✅ Adjust path if different
+import { Outlet, useNavigate } from 'react-router-dom';
+import profilePic from '../assets/Profile.jpg';
+//import axios from 'axios';
 
-function SidebarLayout() {
+function Sidebar() {
+  const navigate = useNavigate();
+
+  
+
+  const handleLoadSaved = (analysis) => {
+    navigate('/analysis', { state: analysis });
+  };
+
   return (
     <div className="app-container">
       <div className="sidebar">
-        {/* ✅ Set profile image as inline background */}
         <div
           className="profile-logo"
           style={{
@@ -24,9 +32,12 @@ function SidebarLayout() {
           <div className="role">Dean</div>
         </div>
 
-        <button className="sidebar-btn">CAE</button>
-        <button className="sidebar-btn">SEMESTER</button>
-        <button className="sidebar-btn">SAVE CAE</button>
+        <button className="sidebar-btn" onClick={() => navigate('/hod?mode=cae')}>CAE</button>
+        <button className="sidebar-btn" onClick={() => navigate('/hod?mode=semester')}>SEMESTER</button>
+
+       <button className="sidebar-btn" onClick={() => navigate('/saved-cae')}>SAVED CAE</button>
+
+
         <button className="sidebar-btn">SAVE SEMESTER</button>
       </div>
 
@@ -37,4 +48,4 @@ function SidebarLayout() {
   );
 }
 
-export default SidebarLayout;
+export default Sidebar;

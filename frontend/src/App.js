@@ -5,25 +5,21 @@ import DeanDashboard from './pages/DeanDashboard';
 import Navbar from './components/Navbar';
 import SidebarLayout from './pages/SideBar'; 
 import Analysis from './pages/Analysis';
+import SavedCae from './pages/SavedCae';
 
 function App() {
   return (
     <BrowserRouter>
-      {/* Navbar is always visible */}
       <Navbar />
 
       <Routes>
-        {/* Public Route (No Sidebar) */}
         <Route path="/" element={<Home />} />
-
-        {/* Protected Routes with Sidebar Layout */}
         <Route element={<SidebarLayout />}>
           <Route path="/hod" element={<DeanDashboard />} />
           <Route path="/analysis" element={<Analysis />} />
-          {/* Add more nested routes here if needed */}
+          <Route path="/saved-cae" element={<SavedCae />} />
         </Route>
 
-        {/* Fallback Route */}
         <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>

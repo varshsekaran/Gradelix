@@ -1,13 +1,64 @@
 .analysis-container {
-  padding: 2rem;
-  color: black;
-  background-color: #f5f5f5;
-  max-width: 400px;
+  color: #000 !important; 
   margin: 2rem auto;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: 260px;
+  min-height: 100vh;
+  width: 80%;  
+  overflow-y: auto;
+  height: calc(100vh - 100px); /* Adjust height based on your navbar */
+  position: absolute;
+  top: 100px;  /* Same height as navbar */
+  left: 0px;/* Sidebar width */
+  right: 0;
+   padding-bottom: 100px; 
+}
+
+.analysis-container::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.analysis-container strong {
+  font-weight: bold;
+  color: #000 !important; 
 }
 
 .analysis-container h2 {
-  margin-bottom: 1rem;
+  font-size: 24px;
+}
+.analysis-container p {
+  font-size: 16px;
+  margin:  0;
+  color: #000; 
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.analysis-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.analysis-table th,
+.analysis-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.analysis-table th {
+  background-color: #800033;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.analysis-table tr:hover {
+  background-color: #f1f5f9;
 }
