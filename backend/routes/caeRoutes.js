@@ -33,4 +33,22 @@ router.get('/saved-cae/:id', async (req, res) => {
   }
 });
 
+router.post('/compare-cae', async (req, res) => {
+  const { id1, id2 } = req.body;
+
+  try {
+    const entry1 = await SavedAnalysis.findById(id1);
+    const entry2 = await SavedAnalysis.findById(id2);
+
+    if (!entry1 || !entry2) {
+      return res.status(404).json({ message: 'One or both entries not found' });
+    }
+
+    res.json({ entry1, entry2 });
+  } catch (err) {
+    console.error('Compare error:', err);
+    res.status(500).json({ message: 'Server error while comparing' });
+  }
+});
+
 module.exports = router;

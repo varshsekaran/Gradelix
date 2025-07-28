@@ -20,7 +20,7 @@ html, body {
 /* Sidebar styling */
 .sidebar {
   position: fixed;
-  top: 100px;                     /* Push below the navbar */
+  top: 80px;                     /* Push below the navbar */
   left: 0;
   width: 200px;
   height: calc(100vh - 80px);    /* Full height minus navbar */

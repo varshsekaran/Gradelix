@@ -3,31 +3,35 @@
 body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
   overflow: hidden;
 }
 
 /* Wrapper that centers the card */
 .hod-dashboard-wrapper {
-  width: 100%;
+  width: 110%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding-bottom: 80px;
-  padding-left: 400px;
+  padding-top: 80px;
+  padding-left: 340px;
+  box-sizing: border-box;
 }
 
 /* Form container */
 .hod-dashboard-card {
   width: 100%;
-  max-width: 500px;
+  
   padding: 40px;
   padding-bottom: 100px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  overflow: hidden;
+  margin-left: 260px;
 }
 
 /* Headings */

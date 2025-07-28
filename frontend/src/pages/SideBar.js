@@ -6,15 +6,13 @@ import profilePic from '../assets/Profile.jpg';
 
 function Sidebar() {
   const navigate = useNavigate();
-
-  
-
   const handleLoadSaved = (analysis) => {
     navigate('/analysis', { state: analysis });
   };
 
   return (
     <div className="app-container">
+
       <div className="sidebar">
         <div
           className="profile-logo"
@@ -38,7 +36,9 @@ function Sidebar() {
        <button className="sidebar-btn" onClick={() => navigate('/saved-cae')}>SAVED CAE</button>
 
 
-        <button className="sidebar-btn">SAVE SEMESTER</button>
+        <button className="sidebar-btn" onClick={() => navigate('/saved-sem')}>SAVE SEMESTER</button>
+        <button className="sidebar-btn" onClick={() => navigate('/staff-analysis')}>STAFF ANALYSIS</button>
+
       </div>
 
       <div className="content">

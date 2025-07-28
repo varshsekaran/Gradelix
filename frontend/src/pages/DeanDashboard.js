@@ -28,9 +28,14 @@ function DeanDashboard() {
       const data = XLSX.utils.sheet_to_json(sheet);
 
       let subjectStats = {};
+      let studentArrears = [];
       const passMark = mode === 'semester' ? 30 : 25;
 
       data.forEach((row) => {
+        let arrearCount = 0;
+        const register = row['REG NO'] || row['Reg No'] || row['Register Number'];
+        const studentName = row['NAME OF THE STUDENT'] || row['Name'] || row['Student Name'];
+
         Object.keys(row).forEach((key) => {
           const header = key.trim().toUpperCase();
           const value = row[key];
@@ -52,6 +57,7 @@ function DeanDashboard() {
           subjectStats[header].total++;
 
           const cleaned = String(value).trim().replace(/,/g, '');
+          
           const isAbsent =
             cleaned === 'A' || cleaned === 'a' || cleaned === '-' || cleaned === '' || isNaN(Number(cleaned));
 
@@ -62,11 +68,19 @@ function DeanDashboard() {
             subjectStats[header].present++;
             if (score < passMark) {
               subjectStats[header].fail++;
+              arrearCount++;
             } else {
               subjectStats[header].pass++;
             }
           }
         });
+        if (register && studentName) {
+          studentArrears.push({
+            register: String(register).trim(),
+            studentName: String(studentName).trim(),
+            arrearCount,
+          });
+        }
       });
 
       Object.keys(subjectStats).forEach((subject) => {
@@ -82,7 +96,8 @@ function DeanDashboard() {
           semester,
           cae,
           mode,
-          subjectStats
+          subjectStats,
+          studentArrears,
         }
       });
     };
@@ -118,7 +133,7 @@ function DeanDashboard() {
           </div>
         ) : (
           <p style={{ paddingTop: '1rem', fontStyle: 'italic', color: '#777' }}>
-            📌 Please select <strong>CAE</strong> or <strong>SEMESTER</strong> from the sidebar to begin.
+            Please select <strong>CAE</strong> or <strong>SEMESTER</strong> from the sidebar to begin.
           </p>
         )}
       </div>

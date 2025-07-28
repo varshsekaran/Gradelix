@@ -1,4 +1,3 @@
-// server.js or index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -15,10 +14,14 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log('MongoDB connected'))
   .catch((err) => console.error(err));
 
-// ✅ Import and use routes
+// ✅ Use all routes BEFORE starting the server
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api', require('./routes/caeRoutes')); // <-- ✅ ADD THIS LINE
+app.use('/api', require('./routes/caeRoutes'));
+app.use('/api', require('./routes/semRoutes'));
+app.use('/api', require('./routes/analysis')); // includes your /staff-subject route\
+//app.use('/api', require('./routes/staffSubject'));
 
-// ✅ Start server
+// ✅ Start the server at the very end
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+

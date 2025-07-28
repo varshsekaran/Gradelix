@@ -1,5 +1,5 @@
 /* Container aligned to the right of a fixed-width sidebar */
-.savedcae-container {
+.savedsem-container {
   margin-left: 260px; /* already present */
   padding: 2rem;
   padding-top: 120px; /* ⬅ Add this line (adjust if needed) */
@@ -12,24 +12,24 @@
 }
 
 /* Optional styling */
-.savedcae-heading {
+.savedsem-heading {
   margin-bottom: 1rem;
   font-size: 24px;
   color: #333;
 }
 
-.savedcae-empty {
+.savedsem-empty {
   font-style: italic;
   color: #777;
 }
 
-.savedcae-list {
+.savedsem-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.savedcae-button {
+.savedsem-button {
   padding: 10px 16px;
   background-color: #831238;
  
@@ -41,18 +41,18 @@
   color: white;
 }
 
-.savedcae-button:hover {
+.savedsem-button:hover {
   background-color: #831238;
  
 }
-.savedcae-entry {
+.savedsem-entry {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
 }
 
-.cae-compare-button {
+.sem-compare-button {
   margin-top: 20px;
   padding: 8px 16px;
   background-color: #5cb85c;

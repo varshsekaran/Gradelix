@@ -1,39 +1,49 @@
+
 .analysis-container {
-  color: #000 !important; 
-  margin: 2rem auto;
-  margin-left: 260px;
-  min-height: 100vh;
-  width: 80%;  
-  overflow-y: auto;
-  height: calc(100vh - 100px); /* Adjust height based on your navbar */
+  color: #000 !important;
   position: absolute;
-  top: 100px;  /* Same height as navbar */
-  left: 0px;/* Sidebar width */
-  right: 0;
-   padding-bottom: 100px; 
+  top: 100px; /* height of navbar */
+  left: 260px; /* width of sidebar */
+  width: calc(100vw - 260px);  /* Remaining width after sidebar */
+  height: calc(100vh - 100px); /* Remaining height after navbar */
+  overflow: auto; /* hide ALL scrollbars */
+  box-sizing: border-box;
+  padding: 20px 30px 50px 30px;
+
+  scrollbar-width: none;         /* Firefox */
+  -ms-overflow-style: none;      /* IE */
 }
 
+/* Hide scrollbar for WebKit browsers */
 .analysis-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+  display: none; /* Chrome, Safari, Opera */
 }
 
+/* Typography */
 .analysis-container strong {
   font-weight: bold;
-  color: #000 !important; 
+  color: #000 !important;
 }
 
 .analysis-container h2 {
   font-size: 24px;
 }
+
 .analysis-container p {
   font-size: 16px;
-  margin:  0;
-  color: #000; 
-}
-.table-wrapper {
-  overflow-x: auto;
+  margin: 0;
+  color: #000;
 }
 
+/* Table wrapper - prevents scrollbars */
+.table-wrapper {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Table styles */
 .analysis-table {
   width: 100%;
   margin-top: 20px;
@@ -41,9 +51,12 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  table-layout: fixed;
+  word-wrap: break-word;
   overflow: hidden;
 }
 
+/* Table headers and cells */
 .analysis-table th,
 .analysis-table td {
   padding: 12px 15px;
@@ -51,6 +64,7 @@
   border-bottom: 1px solid #ddd;
 }
 
+/* Sticky header for the table */
 .analysis-table th {
   background-color: #800033;
   color: #fff;
@@ -59,6 +73,7 @@
   z-index: 1;
 }
 
+/* Hover effect for table rows */
 .analysis-table tr:hover {
   background-color: #f1f5f9;
 }

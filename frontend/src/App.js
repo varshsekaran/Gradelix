@@ -6,6 +6,10 @@ import Navbar from './components/Navbar';
 import SidebarLayout from './pages/SideBar'; 
 import Analysis from './pages/Analysis';
 import SavedCae from './pages/SavedCae';
+import SavedSem from './pages/SavedSem';
+import StaffAnalysis from './pages/StaffAnalysis';
+import CompareCae from './pages/CompareCae';
+import CompareSem from './pages/CompareSem';
 
 function App() {
   return (
@@ -18,6 +22,10 @@ function App() {
           <Route path="/hod" element={<DeanDashboard />} />
           <Route path="/analysis" element={<Analysis />} />
           <Route path="/saved-cae" element={<SavedCae />} />
+          <Route path="/saved-sem" element={<SavedSem />} />
+          <Route path="/staff-analysis" element={<StaffAnalysis/>} />
+          <Route path="/compare-cae" element={<CompareCae/>} />
+          <Route path="/compare-sem" element={<CompareSem/>} />
         </Route>
 
         <Route path="*" element={<Home />} />
@@ -27,3 +35,4 @@ function App() {
 }
 
 export default App;
+
